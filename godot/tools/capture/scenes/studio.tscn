@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://studio0000001"]
+
+[ext_resource type="Script" path="res://scripts/capture.gd" id="1_capture"]
+
+[node name="Studio" type="Node3D"]
+script = ExtResource("1_capture")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+
+[node name="FillLight" type="DirectionalLight3D" parent="."]
+
+[node name="Turntable" type="Node3D" parent="."]

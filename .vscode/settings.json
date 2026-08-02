@@ -1,0 +1,48 @@
+{
+  // File excludes
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+  },
+
+  "html.format.enable": false,
+  "css.format.enable": false,
+  "js/ts.format.enabled": true,
+
+  // Editor settings
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": false,
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": false,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "never",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+
+  // ESLint settings
+  "eslint.format.enable": true,
+  "eslint.options": {
+    "extensions": [".js", ".jsx", ".cjs", ".mjs", ".ts", ".tsx"]
+  },
+  "eslint.validate": [
+    "html",
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+
+  // Stylelint settings
+  "stylelint.validate": [
+    "css",
+    "scss",
+    "vue"
+  ],
+
+  "cSpell.words": [
+    "pinia",
+    "valibot"
+  ]
+}

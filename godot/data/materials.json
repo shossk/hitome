@@ -1,0 +1,48 @@
+[
+  {
+    "id": "pumpkin",
+    "name_ja": "カボチャ",
+    "mesh": "res://assets/materials/pumpkin.fbx",
+    "placeholder": "sphere",
+    "scale": 0.7,
+    "position": [0, -0.2, 0]
+  },
+  {
+    "id": "mushroom",
+    "name_ja": "キノコ",
+    "mesh": "res://assets/materials/mushroom.fbx",
+    "placeholder": "sphere",
+    "scale": 1.3,
+    "position": [0, -0.2, 0]
+  },
+  {
+    "id": "cooking_pot",
+    "name_ja": "調理鍋",
+    "mesh": "res://assets/materials/cookingPot.fbx",
+    "placeholder": "box",
+    "scale": 0.4
+  },
+  {
+    "id": "steak",
+    "name_ja": "ステーキ",
+    "mesh": "res://assets/materials/steak.fbx",
+    "placeholder": "box",
+    "scale": 0.6,
+    "rotation_degrees": [90, 0, 0],
+    "position": [-0.2, 0, 0]
+  },
+  {
+    "id": "burger",
+    "name_ja": "ハンバーガー",
+    "mesh": "res://assets/materials/burger.fbx",
+    "placeholder": "box",
+    "scale": 0.7
+  },
+  {
+    "id": "apple",
+    "name_ja": "林檎",
+    "mesh": "res://assets/materials/apple.fbx",
+    "placeholder": "sphere",
+    "scale": 0.8
+  }
+]

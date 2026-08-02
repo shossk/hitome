@@ -1,0 +1,34 @@
+[
+  {
+    "id": "stick",
+    "name_ja": "棒",
+    "mesh": "res://assets/weapons/stick.glb",
+    "placeholder": "cylinder",
+    "socket": { "position": [0, 0.7, 0], "rotation_degrees": [0, 0, 0] },
+    "tags": ["one_hand"]
+  },
+  {
+    "id": "sword",
+    "name_ja": "剣",
+    "mesh": "res://assets/weapons/sword.fbx",
+    "placeholder": "cylinder",
+    "socket": { "position": [0, 1.8, 0], "rotation_degrees": [0, 0, 0] },
+    "tags": ["one_hand"]
+  },
+  {
+    "id": "spear",
+    "name_ja": "槍",
+    "mesh": "res://assets/weapons/spear.glb",
+    "placeholder": "cylinder",
+    "socket": { "position": [0, 0.9, 0], "rotation_degrees": [0, 0, 0] },
+    "tags": ["two_hand"]
+  },
+  {
+    "id": "axe",
+    "name_ja": "斧",
+    "mesh": "res://assets/weapons/axe.fbx",
+    "placeholder": "cylinder",
+    "socket": { "position": [0, 1.1, 0], "rotation_degrees": [0, 0, 0] },
+    "tags": ["one_hand"]
+  }
+]

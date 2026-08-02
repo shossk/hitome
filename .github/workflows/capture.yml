@@ -1,0 +1,119 @@
+# 撮影パイプライン: Godot 撮影 → CI 内でサーバー起動 → 投稿 → 差分検出
+#
+# 設計メモ:
+# - Godot の --headless はレンダリング自体を無効化するため撮影に使えない。
+#   xvfb (仮想ディスプレイ) + Mesa ソフトウェアレンダリングで実行する。
+#   project.godot 側のレンダラを gl_compatibility にしているのはこのため。
+# - 差分検出には「前回のビルド」の画像と DB が必要。CI ランナーは毎回まっさらなので、
+#   サーバーの状態 (var/: SQLite + storage) を actions/cache で run をまたいで持ち越す。
+#   restore-keys の前方一致で「最新のキャッシュ」を復元する仕組み。
+# - ビルド番号は github.run_number。画像ファイル名と manifest に埋め込まれ、
+#   「いつのビルドから壊れたか」を掲示板側で遡れるようにする。
+#
+# 制約 (把握した上で採用):
+# - cache は 7 日未使用で消える + 容量上限あり → 消えたら差分なしの初回扱いに戻るだけ。
+#   本格運用ならサーバーを常設デプロイに切り替える (ADR 候補)。
+
+name: capture
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 18 * * *" # 毎日 JST 03:00 に全撮影
+
+env:
+  GODOT_VERSION: "4.3"
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      # --- Godot セットアップ ---
+      - name: Install Godot
+        run: |
+          curl -sSLo godot.zip \
+            "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          unzip -q godot.zip
+          sudo mv Godot_v${GODOT_VERSION}-stable_linux.x86_64 /usr/local/bin/godot
+
+      - name: Install xvfb + Mesa (software rendering)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb mesa-utils libgl1-mesa-dri
+
+      # glb/fbx をエディタなしでインポートする (初回は .godot/ キャッシュ生成が必要)
+      - name: Import assets
+        run: |
+          xvfb-run --auto-servernum godot --path tools/capture --import || true
+
+      # --- 撮影 ---
+      - name: Run capture
+        run: |
+          xvfb-run --auto-servernum \
+            godot --path tools/capture -- --build=${{ github.run_number }}
+
+      # --- サーバー状態の復元 (前回ビルドとの差分検出のため) ---
+      - name: Restore board state
+        uses: actions/cache/restore@v4
+        with:
+          path: apps/server/var
+          key: board-var-${{ github.run_id }} # 完全一致は常に miss させる
+          restore-keys: board-var-            # 前方一致で最新のキャッシュを拾う
+
+      # --- TS 側セットアップ + 投稿 ---
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Start server
+        working-directory: apps/server
+        run: |
+          npx tsx src/index.ts &
+          echo $! > /tmp/server.pid
+          # ヘルスチェック: 起動を待つ
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:8787/api/builds && break
+            sleep 1
+          done
+
+      - name: Upload shots to board
+        run: |
+          npm run upload -- out/builds/${{ github.run_number }} http://localhost:8787 \
+            | tee /tmp/upload.log
+          # 差分件数をジョブサマリーに出す
+          echo "### capture build ${{ github.run_number }}" >> "$GITHUB_STEP_SUMMARY"
+          tail -1 /tmp/upload.log >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Stop server
+        if: always()
+        run: kill "$(cat /tmp/server.pid)" 2>/dev/null || true
+
+      # --- 状態の保存と成果物 ---
+      - name: Save board state
+        uses: actions/cache/save@v4
+        with:
+          path: apps/server/var
+          key: board-var-${{ github.run_id }}
+
+      - name: Upload artifacts (raw shots)
+        uses: actions/upload-artifact@v4
+        with:
+          name: shots-build-${{ github.run_number }}
+          path: out/builds/
+          retention-days: 14
+
+      - name: Upload artifacts (board snapshot)
+        uses: actions/upload-artifact@v4
+        with:
+          name: board-snapshot-${{ github.run_number }}
+          path: apps/server/var/
+          retention-days: 14

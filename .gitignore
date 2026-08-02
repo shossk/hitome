@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.tsbuildinfo
+
+# 撮影出力
+godot/out/
+# Godot のインポートキャッシュ
+godot/tools/capture/.godot/
+
+.DS_Store

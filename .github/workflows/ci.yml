@@ -1,0 +1,36 @@
+# TS 側の CI: 型チェック + E2E スモークテスト
+#
+# 撮影 (capture.yml) と分けている理由:
+# - こちらは Godot 不要で数十秒で終わる。PR ごとに気軽に回したい
+# - 撮影は重い (Godot ダウンロード + xvfb) ので main への push と nightly に限定する
+#
+# smoke-test は Godot の出力を模した偽ビルドで
+# 投稿 → 差分検出 → 絞り込み → 報告 の一周を検証する (契約テスト兼用)。
+
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Smoke test (server + uploader + diff)
+        run: npm run smoke-test

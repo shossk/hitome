@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       # --- Godot セットアップ ---
       - name: Install Godot
@@ -59,20 +59,16 @@ jobs:
 
       # --- サーバー状態の復元 (前回ビルドとの差分検出のため) ---
       - name: Restore board state
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: apps/server/var
           key: board-var-${{ github.run_id }} # 完全一致は常に miss させる
           restore-keys: board-var-            # 前方一致で最新のキャッシュを拾う
 
       # --- TS 側セットアップ + 投稿 ---
-      - uses: actions/setup-node@v4
+      - uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
         with:
-          node-version: 22
-          cache: npm
-
-      - name: Install
-        run: npm ci
+          cache: true
 
       - name: Start server
         working-directory: apps/server
@@ -87,7 +83,7 @@ jobs:
 
       - name: Upload shots to board
         run: |
-          npm run upload -- out/builds/${{ github.run_number }} http://localhost:8787 \
+          pnpm run upload -- out/builds/${{ github.run_number }} http://localhost:8787 \
             | tee /tmp/upload.log
           # 差分件数をジョブサマリーに出す
           echo "### capture build ${{ github.run_number }}" >> "$GITHUB_STEP_SUMMARY"
@@ -99,20 +95,20 @@ jobs:
 
       # --- 状態の保存と成果物 ---
       - name: Save board state
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: apps/server/var
           key: board-var-${{ github.run_id }}
 
       - name: Upload artifacts (raw shots)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: shots-build-${{ github.run_number }}
           path: out/builds/
           retention-days: 14
 
       - name: Upload artifacts (board snapshot)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: board-snapshot-${{ github.run_number }}
           path: apps/server/var/

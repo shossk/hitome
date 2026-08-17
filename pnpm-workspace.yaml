@@ -1,7 +1,12 @@
 packages:
   - 'packages/*'
 
+overrides:
+  typescript: npm:typescript-native-bridge@6.0.3-bridge.6.tsgo.7.0.2
+
 catalog:
+  typescript: npm:typescript-native-bridge@6.0.3-bridge.6.tsgo.7.0.2
+
   # frontend
   vue: ^3.5.40
   pinia: ^4.0.2

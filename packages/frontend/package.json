@@ -27,7 +27,7 @@
     "@types/node": "^26.1.2",
     "@vitejs/plugin-vue": "catalog:",
     "tw-animate-css": "catalog:",
-    "typescript": "~6.0.3",
+    "typescript": "catalog:",
     "vite": "catalog:",
     "vue-tsc": "catalog:"
   }

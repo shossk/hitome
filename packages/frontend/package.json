@@ -24,7 +24,7 @@
     "vue": "catalog:"
   },
   "devDependencies": {
-    "@types/node": "^26.1.2",
+    "@types/node": "^26.2.0",
     "@vitejs/plugin-vue": "catalog:",
     "tw-animate-css": "catalog:",
     "typescript": "catalog:",

@@ -33,6 +33,5 @@ catalog:
 
   # 共通
   valibot: ^1.4.2
-  vitest: ^4.1.10
   oxlint: ^1.76.0
   typescript: npm:typescript-native-bridge@6.0.3-bridge.13.tsgo.7.0.2

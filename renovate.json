@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "prConcurrentLimit": 5,
+  "customManagers": [
+    {
+      "customType": "jsonata",
+      "fileFormat": "json",
+      "managerFilePatterns": ["/package.json/"],
+      "matchStrings": [
+        "devEngines.runtime ? [{ \"depName\": devEngines.runtime.name, \"currentValue\": devEngines.runtime.version, \"datasource\": devEngines.runtime.name = \"node\" ? \"node-version\" : devEngines.runtime.name = \"deno\" ? \"deno\" : \"npm\", \"versioning\": devEngines.runtime.name = \"node\" ? \"node\" : \"npm\" }] : []",
+        "devEngines.packageManager ? [{ \"depName\": devEngines.packageManager.name = \"yarn\" ? \"@yarnpkg/cli\" : devEngines.packageManager.name, \"currentValue\": devEngines.packageManager.version, \"datasource\": \"npm\", \"versioning\": \"npm\" }] : []"
+      ]
+    }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["custom.jsonata"],
+      "matchPackageNames": ["pnpm"],
+      "rangeStrategy": "bump"
+    }
+  ]
+}

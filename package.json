@@ -7,7 +7,10 @@
     "dev": "pnpm -r --parallel dev",
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "oxlint . && oxfmt . --check",
+    "lint:fix": "oxlint . --fix",
+    "knip": "knip",
+    "knip:production": "knip --production --strict"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +30,9 @@
   },
   "type": "module",
   "devDependencies": {
+    "knip": "^6.32.2",
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.78.0",
     "typescript": "catalog:"
   }
 }

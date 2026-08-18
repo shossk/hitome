@@ -5,7 +5,7 @@ allowBuilds:
   vue-demi: true
 
 overrides:
-  typescript: npm:typescript-native-bridge@6.0.3-bridge.6.tsgo.7.0.2
+  typescript: npm:typescript-native-bridge@6.0.3-bridge.13.tsgo.7.0.2
 
 catalog:
   # frontend
@@ -35,4 +35,4 @@ catalog:
   valibot: ^1.4.2
   vitest: ^4.1.10
   oxlint: ^1.76.0
-  typescript: npm:typescript-native-bridge@6.0.3-bridge.6.tsgo.7.0.2
+  typescript: npm:typescript-native-bridge@6.0.3-bridge.13.tsgo.7.0.2

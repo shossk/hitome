@@ -2,36 +2,39 @@
   "name": "hitome",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "pnpm -r --parallel dev",
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
-    "lint": "oxlint . && oxfmt . --check",
+    "lint": "oxlint .",
     "lint:fix": "oxlint . --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint:check": "pnpm lint && pnpm fmt:check",
     "knip": "knip",
     "knip:production": "knip --production --strict"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devEngines": {
-    "runtime": {
-      "name": "node",
-      "version": "^24.1.9",
-      "onFail": "download"
-    },
-    "packageManager": {
-      "name": "pnpm",
-      "version": "11.21.0",
-      "onFail": "download"
-    }
-  },
-  "type": "module",
   "devDependencies": {
     "knip": "^6.32.2",
     "oxfmt": "^0.63.0",
     "oxlint": "^1.78.0",
     "typescript": "catalog:"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.21.0",
+      "onFail": "download"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "^24.1.9",
+      "onFail": "download"
+    }
   }
 }

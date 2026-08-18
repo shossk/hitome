@@ -9,7 +9,7 @@ overrides:
 
 catalog:
   # frontend
-  vue: ^3.5.40
+  vue: ^3.5.41
   pinia: ^4.0.2
   vite: ^8.1.5
   vue-tsc: ^3.3.8

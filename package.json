@@ -27,6 +27,6 @@
   },
   "type": "module",
   "devDependencies": {
-    "shadcn-vue": "^2.8.1"
+    "typescript": "catalog:"
   }
 }

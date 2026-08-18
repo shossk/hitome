@@ -1,6 +1,6 @@
 # @hitome/backend
 
-撮影結果 (`godot/out/builds`) を配信する API。Fastify + TypeScript 7。
+撮影結果 (`godot/out/builds`) を配信する API。Fastify + TypeScript (`typescript-native-bridge`)。
 
 ## 起動
 

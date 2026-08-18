@@ -26,6 +26,7 @@
   "devDependencies": {
     "@types/node": "^26.2.0",
     "@vitejs/plugin-vue": "catalog:",
+    "shadcn-vue": "^2.8.1",
     "tw-animate-css": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",

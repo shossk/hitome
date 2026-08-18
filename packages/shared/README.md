@@ -11,13 +11,9 @@ src/
 
 ## ビルドしない
 
-`exports` が `./src/index.ts` を直接指している。成果物を作らないので、
-
-- backend (TS 7) は Node の型ストリップでそのまま実行する
-- frontend (TS 6) は Vite がソースごとバンドルする
-
-という形で、TS のバージョンが揃っていなくても同じ定義を共有できる。
-frontend を TS 7 に上げるときもこのパッケージには手を入れなくてよい。
+`exports` が `./src/index.ts` を直接指している。成果物は作らず、backend は Node の
+型ストリップでそのまま実行し、frontend は Vite がソースごとバンドルする。
+型チェックには両方とも同じ `typescript-native-bridge` を使う。
 
 そのぶん **`.ts` 拡張子つきの相対 import が必須** (`./manifest.ts`)。Node の実行条件で、
 `allowImportingTsExtensions` を各パッケージの tsconfig で有効にしてある。

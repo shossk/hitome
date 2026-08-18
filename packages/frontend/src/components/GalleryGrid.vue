@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { SearchXIcon } from '@lucide/vue'
 import { Button } from '@/components/ui/button'
-import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from '@/components/ui/empty'
 import ShotCard from '@/components/ShotCard.vue'
 import { useFilteredPairs } from '@/composables/useFilteredPairs'
 import { useViewerStore } from '@/stores/viewer'
@@ -25,9 +32,7 @@ const { filtered } = useFilteredPairs()
         <SearchXIcon />
       </EmptyMedia>
       <EmptyTitle>該当する組み合わせがありません</EmptyTitle>
-      <EmptyDescription>
-        フィルタを緩めるか、「変更のみ」を解除してください。
-      </EmptyDescription>
+      <EmptyDescription> フィルタを緩めるか、「変更のみ」を解除してください。 </EmptyDescription>
     </EmptyHeader>
     <EmptyContent>
       <Button variant="outline" size="sm" @click="viewer.resetFilters()">

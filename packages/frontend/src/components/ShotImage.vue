@@ -38,7 +38,13 @@ watch(
         :alt="props.alt"
         loading="lazy"
         decoding="async"
-        :class="cn('size-full object-contain transition-opacity duration-200', loaded ? 'opacity-100' : 'opacity-0', props.class)"
+        :class="
+          cn(
+            'size-full object-contain transition-opacity duration-200',
+            loaded ? 'opacity-100' : 'opacity-0',
+            props.class,
+          )
+        "
         @load="loaded = true"
         @error="failed = true"
       />

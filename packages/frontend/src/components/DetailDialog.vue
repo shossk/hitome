@@ -40,7 +40,7 @@ const MODES: { value: CompareMode; label: string }[] = [
   { value: 'blink', label: '点滅' },
 ]
 
-const index = computed(() => filtered.value.findIndex((view) => view.pair.key === viewer.selectedKey))
+const index = computed(() => filtered.value.findIndex(view => view.pair.key === viewer.selectedKey))
 const view = computed(() => (index.value >= 0 ? filtered.value[index.value] : null))
 const pair = computed(() => view.value?.pair ?? null)
 
@@ -114,13 +114,13 @@ function ownsArrowKeys(target: EventTarget | null): boolean {
   return Boolean(element.closest('[data-slot="slider"]'))
 }
 
-onKeyStroke('ArrowLeft', (event) => {
+onKeyStroke('ArrowLeft', event => {
   if (!open.value || ownsArrowKeys(event.target)) return
   event.preventDefault()
   move(-1)
 })
 
-onKeyStroke('ArrowRight', (event) => {
+onKeyStroke('ArrowRight', event => {
   if (!open.value || ownsArrowKeys(event.target)) return
   event.preventDefault()
   move(1)
@@ -153,7 +153,9 @@ onKeyStroke('ArrowRight', (event) => {
             <Badge
               v-else-if="ratio > 0"
               class="tabular-nums"
-              :title="detailDiff ? '等倍で計測した値' : '縮小サンプルによる概算値 (差分モードで等倍計測)'"
+              :title="
+                detailDiff ? '等倍で計測した値' : '縮小サンプルによる概算値 (差分モードで等倍計測)'
+              "
             >
               差分 {{ formatRatio(ratio) }}
             </Badge>
@@ -215,9 +217,7 @@ onKeyStroke('ArrowRight', (event) => {
         </div>
 
         <div class="flex items-center gap-2">
-          <span class="hidden items-center gap-1 sm:flex">
-            <Kbd>←</Kbd><Kbd>→</Kbd> で移動
-          </span>
+          <span class="hidden items-center gap-1 sm:flex"> <Kbd>←</Kbd><Kbd>→</Kbd> で移動 </span>
           <ButtonGroup>
             <Button variant="outline" size="icon-sm" aria-label="前の組み合わせ" @click="move(-1)">
               <ChevronLeftIcon />

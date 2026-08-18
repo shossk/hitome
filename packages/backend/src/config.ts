@@ -27,7 +27,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): ParseResult<Co
       port: Number(env.PORT ?? 8787),
       host: env.HOST ?? '127.0.0.1',
       buildsDir: resolve(env.BUILDS_DIR ?? DEFAULT_BUILDS_DIR),
-      corsOrigin: origin === '*' ? '*' : origin.split(',').map((value) => value.trim()),
+      corsOrigin: origin === '*' ? '*' : origin.split(',').map(value => value.trim()),
       logLevel: env.LOG_LEVEL ?? 'info',
     },
     '環境変数',

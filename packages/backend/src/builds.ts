@@ -60,8 +60,8 @@ export function createBuildsRepository(
       }
 
       const ids = dirents
-        .filter((dirent) => dirent.isDirectory() && SAFE_SEGMENT.test(dirent.name))
-        .map((dirent) => dirent.name)
+        .filter(dirent => dirent.isDirectory() && SAFE_SEGMENT.test(dirent.name))
+        .map(dirent => dirent.name)
 
       const summaries = await Promise.all(
         ids.map(async (id): Promise<BuildSummary | null> => {
@@ -77,7 +77,7 @@ export function createBuildsRepository(
       )
 
       return summaries
-        .filter((summary) => summary !== null)
+        .filter(summary => summary !== null)
         .sort((a, b) => compareBuildId(b.id, a.id))
     },
 

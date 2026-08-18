@@ -32,7 +32,7 @@ export function toCombos(manifest: Manifest | null): Combo[] {
   for (const combo of byKey.values()) {
     combo.angles = Object.keys(combo.shots)
       .map(Number)
-      .filter((angle) => angle !== ICON_ANGLE)
+      .filter(angle => angle !== ICON_ANGLE)
       .sort((a, b) => a - b)
   }
 
@@ -59,11 +59,11 @@ export function shotAt(combo: Combo | null, angle: number): Shot | null {
  * base が null のときは current を並べるだけの単一ビルド表示になる。
  */
 export function pairCombos(base: Combo[] | null, current: Combo[]): ComboPair[] {
-  const mapBase = new Map((base ?? []).map((combo) => [combo.key, combo]))
-  const mapCurrent = new Map(current.map((combo) => [combo.key, combo]))
+  const mapBase = new Map((base ?? []).map(combo => [combo.key, combo]))
+  const mapCurrent = new Map(current.map(combo => [combo.key, combo]))
   const keys = [...new Set([...mapBase.keys(), ...mapCurrent.keys()])]
 
-  return keys.map((key) => {
+  return keys.map(key => {
     const comboBase = mapBase.get(key) ?? null
     const comboCurrent = mapCurrent.get(key) ?? null
     const primary = (comboCurrent ?? comboBase)!
@@ -89,10 +89,7 @@ export function pairCombos(base: Combo[] | null, current: Combo[]): ComboPair[] 
 }
 
 /** 撮影対象の一覧 (フィルタ用)。両ビルドの和集合を出現順で返す。 */
-export function collectIds(
-  combos: Combo[],
-  field: 'weaponId' | 'materialId',
-): string[] {
+export function collectIds(combos: Combo[], field: 'weaponId' | 'materialId'): string[] {
   const seen = new Set<string>()
   for (const combo of combos) seen.add(combo[field])
   return [...seen].sort()

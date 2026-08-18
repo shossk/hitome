@@ -28,7 +28,7 @@ const props = withDefaults(
 
 const emit = defineEmits<{ select: [string | null] }>()
 
-const selected = computed(() => props.builds.find((build) => build.id === props.modelValue) ?? null)
+const selected = computed(() => props.builds.find(build => build.id === props.modelValue) ?? null)
 
 const model = computed({
   get: () => props.modelValue ?? NONE,
@@ -67,7 +67,8 @@ const model = computed({
             </span>
             <span class="text-muted-foreground ml-auto text-xs tabular-nums">
               {{ build.entryCount }}枚<template v-if="build.errorCount">
-                / {{ build.errorCount }}エラー</template>
+                / {{ build.errorCount }}エラー</template
+              >
             </span>
           </span>
         </SelectItem>

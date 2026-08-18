@@ -21,10 +21,10 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: "0 18 * * *" # 毎日 JST 03:00 に全撮影
+    - cron: '0 18 * * *' # 毎日 JST 03:00 に全撮影
 
 env:
-  GODOT_VERSION: "4.3"
+  GODOT_VERSION: '4.3'
 
 jobs:
   capture:
@@ -63,7 +63,7 @@ jobs:
         with:
           path: apps/server/var
           key: board-var-${{ github.run_id }} # 完全一致は常に miss させる
-          restore-keys: board-var-            # 前方一致で最新のキャッシュを拾う
+          restore-keys: board-var- # 前方一致で最新のキャッシュを拾う
 
       # --- TS 側セットアップ + 投稿 ---
       - uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2

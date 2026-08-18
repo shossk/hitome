@@ -4,7 +4,7 @@
     "**/.git": true,
     "**/.DS_Store": true,
     "**/node_modules": true,
-    "**/.pnpm-store": true,
+    "**/.pnpm-store": true
   },
 
   "html.format.enable": false,
@@ -27,27 +27,13 @@
   "eslint.options": {
     "extensions": [".js", ".jsx", ".cjs", ".mjs", ".ts", ".tsx"]
   },
-  "eslint.validate": [
-    "html",
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "vue"
-  ],
+  "eslint.validate": ["html", "javascript", "typescript", "typescriptreact", "vue"],
 
   // Stylelint settings
-  "stylelint.validate": [
-    "css",
-    "scss",
-    "vue"
-  ],
+  "stylelint.validate": ["css", "scss", "vue"],
 
-  "cSpell.words": [
-    "pinia",
-    "valibot"
-  ],
+  "cSpell.words": ["pinia", "valibot"],
 
   "js/ts.tsdk.path": "node_modules/typescript/lib",
   "js/ts.tsdk.promptToUseWorkspaceVersion": true
-
 }

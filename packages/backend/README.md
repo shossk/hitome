@@ -18,24 +18,24 @@ enum など消せない構文は使わない (`erasableSyntaxOnly` で強制)。
 
 ## 環境変数
 
-| 変数          | 既定                    | 用途                                        |
-| ------------- | ----------------------- | ------------------------------------------- |
-| `PORT`        | `8787`                  |                                             |
-| `HOST`        | `127.0.0.1`             |                                             |
-| `BUILDS_DIR`  | `<repo>/godot/out/builds` | 撮影結果の場所                            |
-| `CORS_ORIGIN` | `http://localhost:5273` | カンマ区切り。`*` で全許可                  |
-| `LOG_LEVEL`   | `info`                  |                                             |
+| 変数          | 既定                      | 用途                       |
+| ------------- | ------------------------- | -------------------------- |
+| `PORT`        | `8787`                    |                            |
+| `HOST`        | `127.0.0.1`               |                            |
+| `BUILDS_DIR`  | `<repo>/godot/out/builds` | 撮影結果の場所             |
+| `CORS_ORIGIN` | `http://localhost:5273`   | カンマ区切り。`*` で全許可 |
+| `LOG_LEVEL`   | `info`                    |                            |
 
 値は起動時に valibot で検証する。おかしければ理由付きで即落ちる。
 
 ## エンドポイント
 
-| | |
-|---|---|
-| `GET /health` | `{ ok: true }` |
-| `GET /api/builds` | ビルド一覧 (新しい順)。`BuildListResponse` |
-| `GET /api/builds/:id/manifest` | `Manifest` |
-| `GET /media/:id/:file` | 撮影 PNG |
+|                                |                                            |
+| ------------------------------ | ------------------------------------------ |
+| `GET /health`                  | `{ ok: true }`                             |
+| `GET /api/builds`              | ビルド一覧 (新しい順)。`BuildListResponse` |
+| `GET /api/builds/:id/manifest` | `Manifest`                                 |
+| `GET /media/:id/:file`         | 撮影 PNG                                   |
 
 `/media` は `immutable` で長期キャッシュさせる。同じビルド番号で撮り直しても
 frontend が URL に `?v=<created_at>` を付けるので、古い画像を掴み続けることはない。

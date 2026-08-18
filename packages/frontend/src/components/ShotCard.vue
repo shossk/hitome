@@ -84,7 +84,11 @@ watch(
               削除
             </Badge>
             <template v-else-if="gallery.isComparing">
-              <Badge v-if="!entry || entry.status === 'pending'" variant="outline" class="bg-background/80 shadow-sm">
+              <Badge
+                v-if="!entry || entry.status === 'pending'"
+                variant="outline"
+                class="bg-background/80 shadow-sm"
+              >
                 <Spinner />
               </Badge>
               <Badge v-else-if="entry.status === 'error'" variant="destructive" class="shadow-sm">
@@ -97,9 +101,7 @@ watch(
               >
                 {{ formatRatio(entry.result!.ratio) }}
               </Badge>
-              <Badge v-else variant="outline" class="bg-background/80 shadow-sm">
-                差分なし
-              </Badge>
+              <Badge v-else variant="outline" class="bg-background/80 shadow-sm"> 差分なし </Badge>
             </template>
             <Badge v-if="pair.renamed" variant="outline" class="bg-background/80 shadow-sm">
               名称変更

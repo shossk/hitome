@@ -70,7 +70,10 @@ function createCanvas(width: number, height: number): HTMLCanvasElement {
   return canvas
 }
 
-function context2d(canvas: HTMLCanvasElement, willReadFrequently = false): CanvasRenderingContext2D {
+function context2d(
+  canvas: HTMLCanvasElement,
+  willReadFrequently = false,
+): CanvasRenderingContext2D {
   const ctx = canvas.getContext('2d', { willReadFrequently })
   if (!ctx) throw new Error('2d コンテキストを取得できません')
   return ctx

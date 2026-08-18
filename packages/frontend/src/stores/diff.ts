@@ -27,7 +27,7 @@ export const useDiffStore = defineStore('diff', () => {
   const sources = new Map<string, { urlA: string; urlB: string; threshold: number }>()
 
   const pendingCount = computed(
-    () => Object.values(entries.value).filter((entry) => entry.status === 'pending').length,
+    () => Object.values(entries.value).filter(entry => entry.status === 'pending').length,
   )
 
   function keyOf(urlA: string, urlB: string, threshold: number): string {
@@ -59,7 +59,7 @@ export const useDiffStore = defineStore('diff', () => {
       inFlight.add(key)
 
       diffImagesSampled(source.urlA, source.urlB, source.threshold)
-        .then((result) => {
+        .then(result => {
           update(key, { status: 'done', result, message: null })
         })
         .catch((cause: unknown) => {

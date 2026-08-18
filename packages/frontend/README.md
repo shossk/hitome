@@ -32,11 +32,11 @@ proxy 先は `HITOME_API` で変更可能。別オリジンの backend を直接
 `src/lib/api.ts` は受け取った JSON を必ずスキーマで検証してから返すので、
 backend と食い違ったらその場でエラーになる。
 
-| エンドポイント                  | 返すもの                                                    |
-| ------------------------------- | ----------------------------------------------------------- |
-| `GET /api/builds`               | `BuildListResponse` (新しい順)                              |
-| `GET /api/builds/:id/manifest`  | `Manifest` (Godot が書いた形のまま)                         |
-| `GET /media/:id/:file`          | 撮影 PNG                                                    |
+| エンドポイント                 | 返すもの                            |
+| ------------------------------ | ----------------------------------- |
+| `GET /api/builds`              | `BuildListResponse` (新しい順)      |
+| `GET /api/builds/:id/manifest` | `Manifest` (Godot が書いた形のまま) |
+| `GET /media/:id/:file`         | 撮影 PNG                            |
 
 ## 画面
 

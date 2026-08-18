@@ -7,7 +7,11 @@ import * as v from 'valibot'
  */
 export type ParseResult<TValue> =
   | { readonly ok: true; readonly value: TValue }
-  | { readonly ok: false; readonly message: string; readonly issues: readonly v.BaseIssue<unknown>[] }
+  | {
+      readonly ok: false
+      readonly message: string
+      readonly issues: readonly v.BaseIssue<unknown>[]
+    }
 
 /**
  * スキーマで検証する。
@@ -33,7 +37,7 @@ export function parse<TSchema extends v.GenericSchema>(
 /** どのフィールドがどう駄目だったかを 1 行にまとめる。 */
 export function formatIssues(issues: readonly v.BaseIssue<unknown>[]): string {
   return issues
-    .map((issue) => {
+    .map(issue => {
       const path = v.getDotPath(issue)
       return path ? `${path} ${issue.message}` : issue.message
     })

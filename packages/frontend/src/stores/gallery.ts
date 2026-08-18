@@ -52,7 +52,7 @@ export const useGalleryStore = defineStore('gallery', () => {
     for (const manifest of [baseManifest.value, currentManifest.value]) {
       for (const angle of manifest?.angles ?? []) set.add(angle)
     }
-    const hasIcon = allCombos.value.some((combo) => combo.shots[ICON_ANGLE])
+    const hasIcon = allCombos.value.some(combo => combo.shots[ICON_ANGLE])
     const sorted = [...set].sort((a, b) => a - b)
     return hasIcon ? [...sorted, ICON_ANGLE] : sorted
   })
@@ -61,7 +61,7 @@ export const useGalleryStore = defineStore('gallery', () => {
 
   function buildById(id: string | null): BuildSummary | null {
     if (!id) return null
-    return builds.value.find((build) => build.id === id) ?? null
+    return builds.value.find(build => build.id === id) ?? null
   }
 
   /** 同じビルドの多重取得を避けるための取得中プロミス。 */
@@ -101,7 +101,7 @@ export const useGalleryStore = defineStore('gallery', () => {
       builds.value = res.builds
       buildsDir.value = res.buildsDir ?? null
 
-      const ids = res.builds.map((build) => build.id)
+      const ids = res.builds.map(build => build.id)
       if (!currentBuildId.value || !ids.includes(currentBuildId.value)) {
         currentBuildId.value = ids[0] ?? null
         baseBuildId.value = ids[1] ?? null

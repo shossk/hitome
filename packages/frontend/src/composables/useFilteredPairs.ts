@@ -23,7 +23,7 @@ export function useFilteredPairs() {
   const diff = useDiffStore()
 
   const views = computed<PairView[]>(() =>
-    gallery.pairs.map((pair) => {
+    gallery.pairs.map(pair => {
       const urlBase = shotAt(pair.a, viewer.angle)?.url ?? null
       const urlCurrent = shotAt(pair.b, viewer.angle)?.url ?? null
       const entry = diff.get(urlBase, urlCurrent, viewer.threshold)

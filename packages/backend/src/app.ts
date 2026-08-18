@@ -18,7 +18,7 @@ export async function createApp(config: Config): Promise<FastifyInstance> {
   await app.register(cors, { origin: config.corsOrigin })
 
   const repository = createBuildsRepository(config.buildsDir, {
-    warn: (message) => app.log.warn(message),
+    warn: message => app.log.warn(message),
   })
   registerRoutes(app, repository, config.buildsDir)
 

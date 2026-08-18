@@ -22,7 +22,9 @@ const currentBuild = computed(() => gallery.buildById(gallery.currentBuildId))
 
 <template>
   <header class="border-b">
-    <div class="mx-auto flex w-full max-w-[1800px] flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2.5">
+    <div
+      class="mx-auto flex w-full max-w-[1800px] flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2.5"
+    >
       <div class="flex items-center gap-2">
         <CameraIcon class="text-muted-foreground size-4" />
         <span class="cn-font-heading text-sm font-semibold tracking-tight">hitome</span>
@@ -58,7 +60,7 @@ const currentBuild = computed(() => gallery.buildById(gallery.currentBuildId))
         <span class="text-muted-foreground text-xs">比較元</span>
         <BuildSelect
           :model-value="gallery.baseBuildId"
-          :builds="gallery.builds.filter((build) => build.id !== gallery.currentBuildId)"
+          :builds="gallery.builds.filter(build => build.id !== gallery.currentBuildId)"
           allow-none
           label="比較元のビルド"
           @select="gallery.setBaseBuild($event)"

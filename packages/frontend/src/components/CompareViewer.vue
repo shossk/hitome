@@ -63,15 +63,23 @@ const blinkLabel = computed(() => (showingBase.value ? props.labelBase : props.l
         <figcaption class="text-muted-foreground text-xs font-medium tabular-nums">
           {{ props.labelBase }}
         </figcaption>
-        <ImageSurface class="mx-auto aspect-square w-full max-w-[min(100%,52svh)] rounded-lg border">
-          <ShotImage :src="props.urlBase" :alt="props.labelBase" fallback-label="このビルドには無し" />
+        <ImageSurface
+          class="mx-auto aspect-square w-full max-w-[min(100%,52svh)] rounded-lg border"
+        >
+          <ShotImage
+            :src="props.urlBase"
+            :alt="props.labelBase"
+            fallback-label="このビルドには無し"
+          />
         </ImageSurface>
       </figure>
       <figure class="flex flex-col gap-1.5">
         <figcaption class="text-muted-foreground text-xs font-medium tabular-nums">
           {{ props.labelCurrent }}
         </figcaption>
-        <ImageSurface class="mx-auto aspect-square w-full max-w-[min(100%,52svh)] rounded-lg border">
+        <ImageSurface
+          class="mx-auto aspect-square w-full max-w-[min(100%,52svh)] rounded-lg border"
+        >
           <ShotImage
             :src="props.urlCurrent"
             :alt="props.labelCurrent"

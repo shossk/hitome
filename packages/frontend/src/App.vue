@@ -30,7 +30,7 @@ const ready = computed(() => hasBuilds.value && gallery.currentManifest !== null
 // 保存されていた角度が今のビルドに無い場合 (撮影角度を変えたとき) に取り残されないようにする
 watch(
   () => gallery.angles,
-  (angles) => {
+  angles => {
     if (angles.length > 0 && !angles.includes(viewer.angle)) viewer.angle = angles[0]
   },
 )
@@ -41,7 +41,9 @@ onMounted(() => gallery.loadBuilds())
 <template>
   <TooltipProvider :delay-duration="400">
     <div class="bg-background text-foreground min-h-svh">
-      <div class="bg-background/85 supports-[backdrop-filter]:bg-background/70 sticky top-0 z-30 backdrop-blur">
+      <div
+        class="bg-background/85 supports-[backdrop-filter]:bg-background/70 sticky top-0 z-30 backdrop-blur"
+      >
         <AppHeader />
         <FilterBar v-if="ready" />
       </div>

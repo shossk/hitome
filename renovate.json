@@ -9,9 +9,6 @@
     ":semanticCommitTypeAll(chore)",
     "group:allNonMajor"
   ],
-  "meteor": {
-    "enabled": false
-  },
   "npm": {
     "commitMessageTopic": "{{prettyDepType}} {{depName}}"
   },

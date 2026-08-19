@@ -1,29 +1,64 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", "security:minimumReleaseAgeNpm"],
-  "prConcurrentLimit": 5,
-  "customManagers": [
-    {
-      "customType": "jsonata",
-      "fileFormat": "json",
-      "managerFilePatterns": ["/package.json/"],
-      "matchStrings": [
-        "devEngines.runtime ? [{ \"depName\": devEngines.runtime.name, \"currentValue\": devEngines.runtime.version, \"datasource\": devEngines.runtime.name = \"node\" ? \"node-version\" : devEngines.runtime.name = \"deno\" ? \"deno\" : \"npm\", \"versioning\": devEngines.runtime.name = \"node\" ? \"node\" : \"npm\" }] : []",
-        "devEngines.packageManager ? [{ \"depName\": devEngines.packageManager.name = \"yarn\" ? \"@yarnpkg/cli\" : devEngines.packageManager.name, \"currentValue\": devEngines.packageManager.version, \"datasource\": \"npm\", \"versioning\": \"npm\" }] : []"
-      ]
-    }
+  "extends": [
+    "config:recommended",
+    ":labels(dependencies, chore)",
+    ":maintainLockFilesWeekly",
+    ":widenPeerDependencies",
+    ":pinDevDependencies",
+    ":semanticCommitTypeAll(chore)",
+    "group:allNonMajor"
   ],
+  "meteor": {
+    "enabled": false
+  },
+  "npm": {
+    "commitMessageTopic": "{{prettyDepType}} {{depName}}"
+  },
+  "minimumReleaseAge": "25 hours",
+  "schedule": ["on Monday"],
   "packageRules": [
     {
-      "matchManagers": ["custom.jsonata"],
-      "matchPackageNames": ["pnpm"],
-      "rangeStrategy": "bump"
+      "matchDepTypes": [
+        "dependencies"
+      ],
+      "rangeStrategy": "update-lockfile"
     },
     {
-      "description": "Group non-major dev dependencies",
-      "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "devDependencies (non-major)"
+      "groupName": "vite dependencies",
+      "groupSlug": "vite",
+      "matchPackageNames": [
+        "vite",
+        "/^@vitejs//",
+        "/^vite-/"
+      ]
+    },
+    {
+      "extends": [
+        "packages:test"
+      ],
+      "matchPackageNames": [
+        "c8",
+        "happy-dom",
+        "jsdom",
+        "/vitest/",
+        "/^@vitest//"
+      ],
+      "groupName": "test packages"
+    },
+    {
+      "extends": [
+        "packages:linters"
+      ],
+      "matchPackageNames": [
+        "commitlint",
+        "knip",
+        "publint"
+      ],
+      "groupName": "all linters"
     }
+  ],
+  "postUpdateOptions": [
+    "pnpmDedupe"
   ]
 }

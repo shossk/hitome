@@ -210,7 +210,7 @@ catalogs:
       version: 11.3.0
     '@lucide/vue':
       specifier: ^1.28.0
-      version: 1.28.0
+      version: 1.31.0
     '@tailwindcss/vite':
       specifier: ^4.3.3
       version: 4.3.3
@@ -312,7 +312,7 @@ importers:
         version: link:../shared
       '@lucide/vue':
         specifier: 'catalog:'
-        version: 1.28.0(vue@3.5.41(typescript-native-bridge@6.0.3-bridge.13.tsgo.7.0.2))
+        version: 1.31.0(vue@3.5.41(typescript-native-bridge@6.0.3-bridge.13.tsgo.7.0.2))
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.3.3(vite@8.2.1(@types/node@26.2.0)(jiti@2.7.0)(stylus@0.57.0)(yaml@2.9.0))
@@ -658,8 +658,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@lucide/vue@1.28.0':
-    resolution: {integrity: sha512-cO89UyNM/0i2Srdi04nFWeEOQkqzDZlM2ehtWyBhcMpRTJDKpMZPCGAVlmVBgBgr5HaeL5L6FsU8RHsOdwXtKw==}
+  '@lucide/vue@1.31.0':
+    resolution: {integrity: sha512-NtjEHhcAa7umPh40wrRmlESJqNGdnpc7LziBKFnW3fmlrW0g2xMCDpdWU7WeEHRSl3xOpxbqiFTLKxoK3CoVCg==}
     peerDependencies:
       vue: '>=3.0.1'
 
@@ -3776,7 +3776,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lucide/vue@1.28.0(vue@3.5.41(typescript-native-bridge@6.0.3-bridge.13.tsgo.7.0.2))':
+  '@lucide/vue@1.31.0(vue@3.5.41(typescript-native-bridge@6.0.3-bridge.13.tsgo.7.0.2))':
     dependencies:
       vue: 3.5.41(typescript-native-bridge@6.0.3-bridge.13.tsgo.7.0.2)
 

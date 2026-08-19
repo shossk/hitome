@@ -34,3 +34,6 @@ catalog:
   # 共通
   valibot: ^1.4.2
   typescript: npm:typescript-native-bridge@6.0.3-bridge.13.tsgo.7.0.2
+
+savePrefix: ''
+shellEmulator: true

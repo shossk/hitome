@@ -20,9 +20,9 @@
     "knip:production": "knip --production --strict"
   },
   "devDependencies": {
-    "knip": "^6.32.2",
+    "knip": "6.32.2",
     "oxfmt": "^0.64.0",
-    "oxlint": "^1.78.0",
+    "oxlint": "1.79.0",
     "typescript": "catalog:"
   },
   "devEngines": {

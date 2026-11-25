@@ -15,7 +15,7 @@ catalog:
   vue-tsc: ^3.3.8
   '@vitejs/plugin-vue': ^6.0.8
   '@vueuse/core': ^14.4.0
-  pixelmatch: ^7.2.0
+  pixelmatch: ^8.0.0
 
   # frontend / shadcn-vue
   reka-ui: ^2.10.3
